@@ -69,7 +69,7 @@ def _fingertip_pos(env: "DexGraspEnv", link_name: str) -> torch.Tensor:
     return getattr(env.agent, f"{link_name}_link").pose.p
 
 
-@register_env("Dex-Grasp-v1", max_episode_steps=166)
+@register_env("Dex-Grasp-v1", max_episode_steps=100)
 class DexGraspEnv(BaseEnv):
     """Single-arm dexterous grasp+lift. See module docstring."""
 
