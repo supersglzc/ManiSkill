@@ -1,0 +1,1 @@
+from .uf850_allegro_right import UF850AllegroRight

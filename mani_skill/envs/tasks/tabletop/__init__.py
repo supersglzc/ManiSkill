@@ -11,6 +11,7 @@ from .stack_cube import StackCubeEnv
 from .stack_cube_tower import StackCubeTowerEnv
 from .insert_drawer import InsertDrawerEnv
 from .lift_box import LiftBoxEnv
+from .dex_grasp import DexGraspEnv
 from .turn_faucet import TurnFaucetEnv
 from .two_robot_pick_cube import TwoRobotPickCube
 from .two_robot_stack_cube import TwoRobotStackCube

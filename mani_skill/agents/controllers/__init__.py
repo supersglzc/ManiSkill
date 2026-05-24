@@ -15,6 +15,10 @@ from .pd_ee_ema_cumulative_delta_pos import (
     PDEEEMACumulativeDeltaPosController,
     PDEEEMACumulativeDeltaPosControllerConfig,
 )
+from .pd_joint_ema_cumulative_relative_pos import (
+    PDJointEMACumulativeRelativePosController,
+    PDJointEMACumulativeRelativePosControllerConfig,
+)
 from .pd_joint_vel import PDJointVelController, PDJointVelControllerConfig
 from .pd_joint_pos_vel import PDJointPosVelController, PDJointPosVelControllerConfig
 from .passive_controller import PassiveController, PassiveControllerConfig
