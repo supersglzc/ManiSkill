@@ -139,7 +139,7 @@ class UF850AllegroRight(BaseAgent):
             stiffness=stiff,
             damping=damp,
             force_limit=1e10,
-            scale=0.03,
+            scale=0.05,
             alpha=0.2,
             joint_lower_limit=JOINT_LOWER_LIMIT,
             joint_upper_limit=JOINT_UPPER_LIMIT,
