@@ -41,8 +41,8 @@ from mani_skill.utils.structs.types import GPUMemoryConfig, SimConfig
 
 # Object mass + target — match IsaacLab spec.
 OBJECT_MASS = 0.11
-OBJECT_INIT_LOCAL = (0.05, -0.35, 0.0)      # env-local spawn (z=0 → object settles on table)
-OBJECT_TARGET_LOCAL = (0.05, -0.35, 0.30)   # +30 cm above spawn
+OBJECT_INIT_LOCAL = (0.15, -0.35, 0.0)      # env-local spawn (z=0 → object settles on table)
+OBJECT_TARGET_LOCAL = (0.15, -0.35, 0.30)   # +30 cm above spawn
 OBJECT_TARGET_TOL = 0.10                     # 10 cm success tolerance
 
 # Object mesh paths.
@@ -166,7 +166,11 @@ class DexGraspEnv(BaseEnv):
         obj_local = _object_pos(self)
         target = torch.tensor(OBJECT_TARGET_LOCAL, device=self.device, dtype=obj_local.dtype)
         err = torch.norm(obj_local - target.unsqueeze(0), dim=-1)
-        success = err < OBJECT_TARGET_TOL
+        # Success requires both the dog within tol of the target AND active grasp
+        # (so flicks / throws that drop the dog at the target don't count).
+        in_target = err < OBJECT_TARGET_TOL
+        held = self._allegro_grasp_predicate()
+        success = in_target & held
         # Fail termination: dog more than 2 m from the robot base.
         robot_root = self.agent.robot.pose.p
         d_dog_to_root = torch.norm(obj_local - robot_root, dim=-1)
